@@ -1,0 +1,68 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo"> -- Médicos Cadastrados -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form id="medico_form" >
+            <p:panel header="Medicos Cadastrados"  >
+
+
+                <h:commandLink  >
+                    <p:graphicImage library="imagens" name="exportar_xls.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="xls" target="tabela-medicos" fileName="Medicos"/>
+                </h:commandLink>
+                <h:commandLink  style="margin-left: 50px;">
+                    <p:graphicImage library="imagens" name="exportar_pdf.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="pdf" target="tabela-medicos" fileName="Medicos" encoding="iso-8859-1"/>
+                </h:commandLink>
+                <br/><br/>
+
+
+                <p:dataTable value="#{medicoBean.medicos}" id="tabela-medicos" var="medico" paginator="true"
+                             rows="10" rowsPerPageTemplate="5, 10, 15"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+
+
+                    <p:column headerText="Nome" filterBy="#{medico.nome}"
+                              filterMatchMode="contains" sortBy="#{medico.nome}"
+                              style="width:150px;">
+                        <h:outputText value="#{medico.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="CRM" filterBy="#{medico.crm}"
+                              filterMatchMode="contains" sortBy="#{medico.crm}" style="width:100px;">
+                        <h:outputText value="#{medico.crm}"/>
+                    </p:column>
+                    <p:column style="text-align: center; width: 40px " exportable="false"   >
+                        <p:commandButton value="Editar"
+                                         action="#{medicoBean.editar(medico)}"  /> 
+                    </p:column>
+                    <p:column style="text-align: center; width: 40px " exportable="false"   >
+                        <p:commandButton value="Excluir"
+                                         action="#{medicoBean.excluir(medico)}" /> 
+                    </p:column>
+                </p:dataTable>
+
+
+
+
+
+
+
+                <br/>
+            </p:panel>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+

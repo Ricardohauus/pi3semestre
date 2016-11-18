@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titulo"> -- Marcar Consulta -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:growl autoUpdate="true" showDetail="true" />
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:panel header="Marcar Consulta" style="margin-bottom:20px;">
+
+                <h:panelGrid columns="2" cellpadding="5"  >
+
+                    <p:outputLabel value="Pacientes" for="p" />
+                    <p:selectOneMenu id="p" value="#{marcacaoBean.marcacao.pacienteId}"
+                                     converter="PacienteEntityConverter"
+                                     style="width:200px;"       filter ="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="::Selecione o Paciente::" itemValue="#{null}" />
+                        <f:selectItems value="#{pacienteBean.pacientes}" var="p" itemLabel="#{p.nome}" 
+                                       itemValue="#{p}"/>
+                    </p:selectOneMenu>    
+
+                    <p:outputLabel value="Medicos" for="m"/>
+                    <p:selectOneMenu id="m" value="#{marcacaoBean.marcacao.medicoId}"                           
+                                     converter="MedicoEntityConverter"
+                                     style="width:200px;"          filter ="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="::Selecione o Médico::" itemValue="#{null}"/>
+                        <f:selectItems value="#{medicoBean.medicos}" var="m" itemLabel="#{m.nome}" 
+                                       itemValue="#{m}"/>                           
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Horário Marcação"/>
+                    <p:calendar value="#{marcacaoBean.marcacao.dataHora}" mindate="#{marcacaoBean.dataAtual}"
+                                pattern="dd/MM/yyyy" locale="pt_BR"/>
+                </h:panelGrid>
+                <p:separator />
+                <p:commandButton value="Salvar" action="#{marcacaoBean.salvar}" update="@form" />
+                <p:commandButton value="Cancelar" action="resetValues"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

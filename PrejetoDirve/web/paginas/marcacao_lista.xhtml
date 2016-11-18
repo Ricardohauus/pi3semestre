@@ -1,0 +1,66 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo"> -- Lista De Marcação -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form id="marcacao_form" >
+            <p:panel header="Marcações Cadastradas"  >
+
+                <h:commandLink  >
+
+                    <p:graphicImage library="imagens" name="exportar_xls.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="xls" target="tabela-marcacao" fileName="Marcacoes"/>
+                </h:commandLink>
+                <h:commandLink  style="margin-left: 50px;">
+                    <p:graphicImage library="imagens" name="exportar_pdf.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="pdf" target="tabela-marcacao" fileName="Marcacoes" encoding="iso-8859-1"/>
+                </h:commandLink>
+                <br/><br/>
+                <p:dataTable value="#{marcacaoBean.marcacoes}" id="tabela-marcacao" var="marcacao" paginator="true"
+                             rows="10" rowsPerPageTemplate="5, 10, 15"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                    <p:column headerText="Código Da Marcação" filterBy="#{marcacao.id}"
+                              filterMatchMode="contains" sortBy="#{marcacao.id}" 
+                              style="width:150px;">                        
+                        <h:outputText value="#{marcacao.id}"/>
+                    </p:column>
+
+                    <p:column headerText="Paciente" filterBy="#{marcacao.pacienteId.nome}"
+                              filterMatchMode="contains" sortBy="#{marcacao.pacienteId.nome}" 
+                              style="width:150px;">                        
+                        <h:outputText value="#{marcacao.pacienteId.nome}"/>
+                    </p:column>
+                    <p:column headerText="Medico" filterBy="#{marcacao.medicoId.nome}"
+                              filterMatchMode="contains" sortBy="#{marcacao.medicoId.nome}" style="width:150px;">
+                        <h:outputText value="#{marcacao.medicoId.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Data da Consulta" filterBy="#{marcacao.dataHora}"
+                              filterMatchMode="contains" sortBy="#{marcacao.dataHora}" style="width:150px;">
+                        <h:outputText value="#{marcacao.dataHora}" />
+                    </p:column>
+
+                    <p:column style="text-align: center; width: 60px " exportable="false"   >
+                        <p:commandButton value="Editar"
+                                         action="#{marcacaoBean.editar(marcacao)}"  /> 
+                    </p:column>
+                    <p:column style="text-align: center; width: 60px " exportable="false"   >
+                        <p:commandButton value="Excluir"
+                                         action="#{marcacaoBean.excluir(marcacao)}" /> 
+                    </p:column>
+                </p:dataTable>
+                <br/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

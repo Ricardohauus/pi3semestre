@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titulo"> -- Cadastrar Horários -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:growl/>
+            <p:panel header="Cadastro de Horarios" style="color:#66ff66" > 
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Medicos" for="m"/>
+                    <p:selectOneMenu id="m" value="#{horarioBean.horario.medico}"                           
+                                     converter="MedicoEntityConverter"
+                                     style="width:200px;"          filter ="true" filterMatchMode="contains">
+                        <f:selectItem itemLabel="::Selecione o Médico::" itemValue="#{null}"/>
+                        <f:selectItems value="#{medicoBean.medicos}" var="m" itemLabel="#{m.nome}" 
+                                       itemValue="#{m}"/>                           
+                    </p:selectOneMenu> 
+                       <p:outputLabel for="console" value="Dia de Atendimeneto" />
+                       <p:selectOneMenu id="console" value="#{horarioBean.horario.dia}" >
+                        <f:selectItem itemLabel="::Selecione::" value="#{null}" />
+                        <f:selectItem itemLabel="Segunda-Feira" itemValue="Segunda-Feira" />
+                        <f:selectItem itemLabel="Terça-Feira" itemValue="Terça-Feira" />
+                        <f:selectItem itemLabel="Quarta-Feira" itemValue="Quarta-Feira" />
+                        <f:selectItem itemLabel="Quinta-Feira" itemValue="Quinta-Feira" />
+                        <f:selectItem itemLabel="Sexta-Feira" itemValue="Sexta-Feira" />
+                        <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
+                        <f:selectItem itemLabel="Domingo" itemValue="Domingo" />
+                    </p:selectOneMenu>
+                    <h:outputLabel value="Horario de Atendimento" />
+                    <p:inputMask value="#{horarioBean.horario.horario}" mask="99:99"/>
+                </p:panelGrid>
+                <p:commandButton value="Salvar" action="#{horarioBean.salvar}" update="@form" />
+                <p:commandButton value="Cancelar" action="resetValues"/>
+            </p:panel>
+        </h:form>
+
+
+    </ui:define>
+
+
+
+
+</ui:composition>

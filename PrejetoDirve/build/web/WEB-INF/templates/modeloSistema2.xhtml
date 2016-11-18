@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Comentário -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+
+        <h:outputStylesheet library="css" name="style.css" />
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/style.css" rel="stylesheet" media="screen"/>
+        <title><ui:insert name="titulo"> -- Seja Bem Vindo! -- </ui:insert>
+           
+        </title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true" >
+            <p:layoutUnit position="north" collapsed="false" >
+                <ui:insert name="Menu"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" size="200" >
+                <ui:insert name="Conteudo"/>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="south" size="30" >
+                <ui:insert name="Rodape"/>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+
+</html>

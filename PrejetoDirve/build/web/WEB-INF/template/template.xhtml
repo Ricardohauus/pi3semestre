@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Passagem Aerea - 
+            <ui:insert name="titulo">
+
+            </ui:insert> 
+        </title>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/estilo.css" rel="stylesheet" media="screen"/>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" media="screen"/>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/bootstrap.css" rel="stylesheet" media="screen"/>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/styles_1.css" rel="stylesheet" media="screen"/>
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/menuInterno.css" rel="stylesheet" media="screen"/> 
+        <link  href="#{facesContext.externalContext.requestContextPath}/resources/css/tema.css" rel="stylesheet" media="screen"/> 
+
+    </h:head>
+    <h:body>
+        <div id="header">
+            <div id="cabeca">
+                <div id="logo">
+
+                </div>
+                <div id="login">  
+
+                </div>
+            </div>
+            <div id="menu">
+                <div id='cssmenu'>
+                    <ul>
+                        <li> <h:link value="Inicio" outcome="/index" /></li>                        
+                        <li class='active'>
+                            <a href='#'>Cliente</a>
+                            <ul>
+                                <li><h:link value="Cadastro" outcome="/pages/cliente/cliente_formulario" />                                      
+                                </li>
+                                <li><h:link value="Lista" outcome="/pages/cliente/cliente_lista" />                                    
+                                </li>
+                            </ul>
+                        </li>
+                        <li class='active'>
+                            <a href='#'>Voo</a>
+                            <ul>
+                                <li><h:link value="Cadastro" outcome="/pages/voo/voo_formulario" />                                      
+                                </li>
+                                <li><h:link value="Lista" outcome="/pages/voo/voo_lista" />                                    
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><h:link value="Cidades" outcome="/pages/voo/cidade_formulario" /></li>
+                        <li><a href='#'>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="conteudo">
+                <div id="destaque">
+
+                    <ui:insert name="conteudo">
+                        Espaço para o conteudo da tela
+                    </ui:insert>
+                </div>
+            </div>
+            <div id="rodape">
+                <footer>
+                    <div class="container" >
+                        <ul class="social">
+                            <li><a href="http://facebook.com/mirrorfashion">Facebook</a></li>
+                            <li><a href="http://twitter.com/mirrorfashion">Twitter</a></li>
+                            <li><a href="http://plus.google.com/mirrorfashion">Google+</a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div> 
+        </div>
+    </h:body>
+</html>

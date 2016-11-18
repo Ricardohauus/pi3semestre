@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titulo"> -- Atendimento -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:growl autoUpdate="true" showDetail="true" />
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:panel header="Atendimento" style="margin-bottom:20px;">
+
+                <h:panelGrid columns="2" cellpadding="5"  >
+                    <h:outputLabel value="Código Da Marcação" />
+                    <p:inputText value="#{atendimentoBean.atendimento.marcacao.id}"/> 
+                    <h:outputLabel value="CPF:" />
+                </h:panelGrid>
+                <p:separator />
+                <p:commandButton value="Salvar" action="#{marcacaoBean.salvar}" update="@form" />
+                <p:commandButton value="Cancelar" action="resetValues"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

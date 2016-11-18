@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <ui:composition>
+        <h:form>     
+            <p:menubar>
+                <p:menuitem value="Inicio" outcome="/index" icon="ui-icon-home"  />
+
+                <p:submenu label="Cadastro" >
+                    <p:submenu label="Paciente" >
+                        <p:menuitem value="Cadastrar Paciente" outcome="/paginas/formulario_paciente"/>
+                        <p:menuitem value="Listar Paciente" outcome="/paginas/paciente_lista"/>
+                    </p:submenu>
+                    <p:submenu label="Medico" >
+                        <p:menuitem value="Cadastrar Medico" outcome="/paginas/formulario_medico"/>
+                        <p:menuitem value="Listar Medico" outcome="/paginas/medico_lista"/>
+                    </p:submenu>
+
+                </p:submenu>
+                <p:submenu label="Marcação">
+                    <p:menuitem value="Consultar Marcações" outcome="/paginas/marcacao_lista"/>
+                    <p:menuitem value="Marcar Consulta" outcome="/paginas/formulario_marcacao"/>                                           </p:submenu>
+
+                <p:submenu label="Horários">
+                    <p:menuitem value="Inserir" outcome="/paginas/formulario_horario"/>
+                    <p:menuitem value="Listar" outcome="/paginas/horario_lista"/>
+                </p:submenu>
+
+                <p:submenu label="Atendimento">
+                    <p:menuitem value="Cadastrar Atendimento" outcome="/paginas/formulario_atendimento" />
+                    <p:menuitem value="Listar Atendimentos" outcome="/paginas/atendimento_lista"/> 
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+</html>

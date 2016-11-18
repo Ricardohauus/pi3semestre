@@ -1,0 +1,60 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo"> -- Horários Cadastrados -- </ui:define>
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form id="horario_form" >
+            <p:panel header="Horários Cadastrados"  >
+                <h:commandLink  >
+                    <p:graphicImage library="imagens" name="exportar_xls.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="xls" target="tabela-horarios" fileName="Horarios"/>
+                </h:commandLink>
+                <h:commandLink  style="margin-left: 50px;">
+                    <p:graphicImage library="imagens" name="exportar_pdf.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="pdf" target="tabela-horarios" fileName="Horarios" encoding="iso-8859-1"/>
+                </h:commandLink>
+                <br/><br/>
+                <p:dataTable value="#{horarioBean.horarios}" id="tabela-horarios" var="horario" paginator="true"
+                             rows="10" rowsPerPageTemplate="5, 10, 15"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                    
+                    <p:column id="m2" headerText="Nome" filterBy="#{horario.medico.nome}" 
+                              filterMatchMode="contains" sortBy="#{horario.medico.nome}"
+                              style="width:150px;">
+                        <h:outputText value="#{horario.medico.nome}" />
+                    </p:column>
+                    <p:column headerText="CRM" filterBy="#{horario.medico.crm}"
+                              filterMatchMode="contains" sortBy="#{horario.medico.crm}" style="width:100px;">
+                        <h:outputText value="#{horario.medico.crm}"/>
+                    </p:column>
+                    <p:column headerText="Dia" filterBy="#{horario.dia}"
+                              filterMatchMode="contains" sortBy="#{horario.dia}" style="width:100px;">
+                        <h:outputText value="#{horario.dia}"/>
+                    </p:column>
+                    <p:column headerText="Horário" filterBy="#{horario.horario}"
+                              filterMatchMode="contains" sortBy="#{horario.horario}" style="width:100px;">
+                        <h:outputText value="#{horario.horario}"/>
+                    </p:column>
+                    
+                    <p:column style="text-align: center; width: 35px " exportable="false">
+                        <p:commandButton value="Editar"
+                                         action="#{horarioBean.editar(horario)}"  /> 
+                    </p:column>
+                    <p:column style="text-align: center; width: 35px " exportable="false">
+                        <p:commandButton value="Excluir"
+                                         action="#{horarioBean.excluir(horario)}" /> 
+                    </p:column>
+                </p:dataTable>
+                <br/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    
+    <ui:define name="Conteudo">
+        <div id="fundoPequeno" style="margin-top:-5px;margin-left:-10px;" >
+            <p:imageSwitch effect="fade" id="fadeEffect"
+                           >
+                <ui:repeat value="#{logoInicioBean.images}" var="image" id="fadeEffectImages">
+                    <p:graphicImage name="#{image}" library="imagens" id="image2"/>
+                </ui:repeat>
+        </p:imageSwitch>
+        </div>
+        
+    </ui:define>
+    
+
+
+</ui:composition>

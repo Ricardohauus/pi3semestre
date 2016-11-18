@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titulo"> -- Cadastrar Médico -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form>
+           <p:growl autoUpdate="true" showDetail="true" />
+            <p:panel header="Cadastro de Medicos" style="color:#66ff66" > 
+
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Nome" />
+                    <p:inputText value="#{medicoBean.medico.nome}"/> 
+                    <h:outputLabel value="CRM" />
+                    <p:inputText value="#{medicoBean.medico.crm}"/>                   
+                </p:panelGrid>
+                <p:commandButton value="Salvar" action="#{medicoBean.salvar}" update="@form" />
+                <p:commandButton value="Cancelar" action="resetValues"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

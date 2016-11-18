@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="titulo"> -- Cadastrar Paciente -- </ui:define>
+    
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:growl/>
+            <p:panel header="Cadastro de Paciente" style="color:#66ff66" > 
+                
+            <p:panelGrid columns="2">
+                <h:outputLabel value="Nome:" />
+                <p:inputText value="#{pacienteBean.paciente.nome}"/> 
+                <h:outputLabel value="CPF:" />
+                <p:inputMask  value="#{pacienteBean.paciente.cpf}" mask="999.999.999-99" /> 
+            </p:panelGrid>
+                <p:commandButton value="Salvar" action="#{pacienteBean.salvar}" update="@form" />
+                <p:commandButton value="Cancelar" action="resetValues"/>
+        </p:panel>
+        </h:form>
+    
+    
+    </ui:define>
+
+
+
+
+</ui:composition>

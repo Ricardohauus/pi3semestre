@@ -1,0 +1,70 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/WEB-INF/templates/modeloSistema.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo"> -- Pacientes Cadastrados -- </ui:define>
+
+    <ui:define name="Menu">
+        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="Conteudo">
+        <h:form id="cliente_form" >
+            <p:panel header="Paciente Cadastrados"  >
+
+
+                <h:commandLink  >
+                    <p:graphicImage library="imagens" name="exportar_xls.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="xls" target="tabela-clientes" fileName="Clientes"/>
+                </h:commandLink>
+                <h:commandLink  style="margin-left: 50px;">
+                    <p:graphicImage library="imagens" name="exportar_pdf.png" style="width: 30px; height: 30px;"/>
+                    <p:dataExporter type="pdf" target="tabela-clientes" fileName="Clientes" encoding="iso-8859-1"/>
+                </h:commandLink>
+                <br/><br/>
+
+
+                <p:dataTable value="#{pacienteBean.pacientes}" id="tabela-clientes" var="paciente" paginator="true"
+                             rows="10" rowsPerPageTemplate="5, 10, 15"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+
+
+                    <p:column headerText="Nome" filterBy="#{paciente.nome}"
+                              filterMatchMode="contains" sortBy="#{paciente.nome}"
+                              style="width:150px;">
+                        <h:outputText value="#{paciente.nome}"/>
+                    </p:column>
+                    <p:column headerText="CPF" filterBy="#{paciente.cpf}"
+                              filterMatchMode="contains" sortBy="#{paciente.cpf}"
+                              style="width:150px;">
+                        <h:outputText value="#{paciente.cpf}"/>
+                    </p:column>
+
+
+                    <p:column style="text-align: center; width: 20px " exportable="false"   >
+                        <p:commandButton value="Editar"
+                                         action="#{pacienteBean.editar(paciente)}"  /> 
+                    </p:column>
+                    <p:column style="text-align: center; width: 20px " exportable="false"   >
+                        <p:commandButton value="Excluir"
+                                         action="#{pacienteBean.excluir(paciente)}" /> 
+                    </p:column>
+                </p:dataTable>
+
+
+
+
+
+
+
+                <br/>
+            </p:panel>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+
